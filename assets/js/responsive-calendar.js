@@ -207,8 +207,9 @@
         } else {
           pastFutureClass = "future";
         }
+		
         day.addClass(this.weekDays[i % 7]);
-		  if(this.weekDays[i % 7] == "sun" || this.weekDays[i % 7] == "thu" || this.weekDays[i % 7] == "sat"){
+		  if(this.weekDays[i % 7] === "sun" || this.weekDays[i % 7] === "thu" || this.weekDays[i % 7] === "sat"){
 			  day.addClass("cannotset");
 		  }else{
 			  day.addClass("canset");
@@ -225,6 +226,7 @@
             dateString = yearNum + "-" + this.addLeadingZero(monthNum) + "-" + this.addLeadingZero(dayNum);
           }
         }
+		day.attr('id',dayNum+""+monthNum+""+yearNum);
         day.append($("<a>" + dayNum + "</a>").attr("data-day", dayNum).attr("data-month", monthNum).attr("data-year", yearNum).attr("onClick","modalop('"+dayNum+"_"+monthNum+"_"+yearNum+"')"));
         if (this.options.monthChangeAnimation) {
           this.applyTransform(day, 'rotateY(180deg)');

@@ -1,19 +1,23 @@
 <?php
 	include "dbconfig.php";
-	$datum = $_GET["datum"];
-	$sql = "SELECT * FROM menue where datum = $datum";
+
+	session_start();
+	$id = $_SESSION["id"];
+	$sql = "SELECT date FROM bestellt where user_id = $id";
 	$result = $conn->query($sql);
-	$i = 0;
+	$i = 1;
+
 if ($result->num_rows > 0) {
 	while($row = $result->fetch_assoc()) {
-		$arr[$i] = $row["name"] . "-" .$row["art"] . "_" . $row["id"];
-		$i++;
+		
+		$arr[] = $row["date"];
+		
     }
 } else {
     echo "0 results";
 }
 
 	$return = json_encode($arr);
-	print($return);
+	echo $return;
 	$conn->close();
 ?>
